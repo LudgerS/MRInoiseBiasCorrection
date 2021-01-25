@@ -1,11 +1,21 @@
-% createLookupTable
 %
-% creates a lookup-table for the function fun(A)
+% createLookupTable.m
+%
+% creates a lookup-table for the mean of the non-central chi distribution
+%
+% See function 'expectationValueMultiReceiverCoil' below for details.
+% Keep sigma = 1 for compatibility with function 'correctNoiseBias' from
+% the MRInoiseBiasCorrection tool.
+%
+% Written by Ludger Starke; Max Delbrück Center for Molecular Medicine in
+% the Helmholtz Association, Berlin; 21-01-25
+%
+% License: GNU GPLv3 
 
 clear
 
 sigma = 1;
-nElements = [1, 2, 4, 8, 16];
+nElements = [1, 2, 4, 8, 16, 32, 64];
 
 
 minA = 0;
@@ -36,7 +46,7 @@ function [y] = expectationValueMultiReceiverCoil(sigma, An, nElements)
 % with x = M_n/sigma and lambda = A_n/sigma
 %
 % Valid for 1 or more receive elements when the image is reconstructed as
-% the root-mean-square.
+% the (root) sum-of-squares.
 %
 % As what is given on wikipedia is the expectation value of the normalized signal 
 % A_n/sigma, it is rescaled by multiplication with sigma.
